@@ -58,8 +58,8 @@ app.get('/api/credentials/:marketplace', async (req, res) => {
       success: true,
       connected: true,
       marketplace: marketplace,
-      lastVerified: result.rows.last_verified,
-      isActive: result.rows.is_active
+      lastVerified: result.rows[0].last_verified,
+      isActive: result.rows[0].is_active
     });
   } catch (error) {
     console.error('Database error:', error);
@@ -122,7 +122,7 @@ app.post('/api/credentials/add', async (req, res) => {
 
     res.json({
       success: true,
-      credentialId: result.rows.id,
+      credentialId: result.rows[0].id,
       message: 'Credentials saved successfully'
     });
   } catch (error) {
